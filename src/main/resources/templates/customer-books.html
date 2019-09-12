@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library</title>
+    <link href="/webjars/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/jquery/3.4.0/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/library.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <h1 class="button-display"><a href="/customers" class="btn btn-primary header-button">Back</a></h1>
+            <h1 class="button-display">Books for <span th:text="${customer.name}"></span></h1>
+
+            <div class="search-container">
+                <form class="form-horizontal" th:action="@{/customer/books/{id}(id=${customer.id})}" method="get">
+                    <div class="">
+                        <label class="control-label">Title</label>
+                        <input class="search-padding" name="title" type="text" placeholder="Name" th:value="${searchTitle}">
+                        <label class="control-label">Author</label>
+                        <input class="search-padding" name="author" type="text" placeholder="Author" th:value="${searchAuthor}">
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </div>
+                </form>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.status}"></td>
+                    <td>
+                        <a th:if="${book.ownerId} != null" class="borrow-return-button" th:href="@{/book/return/{bookId}/user/{userId}(bookId=${book.id},userId=${customer.id})}">Return</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

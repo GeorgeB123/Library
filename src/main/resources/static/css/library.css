@@ -1,0 +1,47 @@
+.header-button {
+    float: left;
+    margin-right: 15px;
+    display: inline-block;
+}
+.add-button {
+    float: right;
+}
+.back-button {
+    display: inline-block;
+}
+h1.button-display {
+    display: inline;
+}
+.delete-button {
+    color: red;
+    padding-left: 5px;
+}
+.borrow-return-button {
+    color: forestgreen;
+    padding-left: 5px;
+}
+.search-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.extra-dropdown-padding {
+    padding: 6px;
+}
+.search-padding {
+    margin-left: 15px;
+    margin-right: 20px;
+}
+.fieldset-padding {
+    padding-top: 30px;
+}
+@media {
+    .control-label {
+        text-align: left;
+    }
+    .col-lg-2 {
+        width: 7%;
+    }
+}
+.borrow-dropdown {
+    width: 100%;
+}

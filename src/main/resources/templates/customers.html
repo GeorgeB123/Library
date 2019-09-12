@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library</title>
+    <link href="/webjars/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/jquery/3.4.0/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/library.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <h1 class="button-display"><a href="/" class="btn btn-primary header-button">Books</a></h1>
+            <h1 class="button-display"><a href="/customers" class="btn btn-primary header-button">Customers</a></h1>
+            <h1 class="button-display">Customers</h1>
+            <h1 class="button-display"><a href="/customer/create" class="btn btn-primary add-button">Add Customer</a></h1>
+
+            <div class="search-container">
+                <form class="form-horizontal" th:action="@{/customers}" method="get">
+                    <div class="">
+                        <label class="control-label">Name</label>
+                        <input class="search-padding" name="name" type="text" placeholder="Name" th:value="${searchName}">
+                        <label class="control-label">Email</label>
+                        <input class="search-padding" name="email" type="text" placeholder="Email" th:value="${searchEmail}">
+                        <label class="control-label">Address</label>
+                        <input class="search-padding" name="address" type="text" placeholder="Address" th:value="${searchAddress}">
+                        <label class="control-label">Phone Number</label>
+                        <input class="search-padding" name="phoneNumber" type="text" placeholder="Phone Number" th:value="${searchNumber}">
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </div>
+                </form>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+                <tr th:each="customer : ${customers}">
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.phoneNumber}"></td>
+                    <td>
+                        <a th:href="@{/customer/{id}(id=${customer.id})}">Details</a>
+                        <a class="delete-button" th:href="@{/customer/delete/{id}(id=${customer.id})}">Delete</a>
+                        <a class="borrow-return-button" th:href="@{/customer/books/{id}(id=${customer.id})}">Books</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

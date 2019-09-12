@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library</title>
+    <link href="/webjars/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/jquery/3.4.0/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/library.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${hasMesssage}" class="alert alert-success alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong th:text="${message}"></strong> Book has been successfully updated.
+    </div>
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="back-button">
+                <a href="/" class="btn btn-primary header-button">Back</a>
+                <h1 class="button-display">Book Details</h1>
+            </div>
+            <form class="form-horizontal" action="#" th:action="@{/book/update/{id}(id=${book.id})}" method="post"
+                  th:object="${book}">
+                <fieldset class="fieldset-padding">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Title</label>
+                        <div class="col-lg-6">
+                            <!--/*@thymesVar id="title" type=""*/-->
+                            <input type="text" class="form-control" required
+                                   th:field="*{title}" th:value="*{title}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Author</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" required
+                                   th:field="*{author}" th:value="*{author}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Status</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" readonly="readonly"
+                                   th:field="*{status}" th:value="*{status}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Owner</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" readonly="readonly"
+                                   th:field="*{ownerId}" th:value="*{ownerId}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">Update</button>
+                            </span>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
